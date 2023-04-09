@@ -22,9 +22,9 @@ g.clock-scale.small section rect {
 /* 針 */
 #minute-hand rect {
   x: -4;
-  y: -110;
+  y: -50%;
   width: 8;
-  height: 110;
+  height: 50%;
   fill: greenyellow;
 }
 #hour-hand rect {
