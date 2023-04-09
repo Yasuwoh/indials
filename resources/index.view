@@ -1,3 +1,245 @@
-<svg>
-  <rect id="background" />
+<svg class="background">
+
+  <defs>
+    <!-- 円盤の目盛り(5分単位) -->
+    <symbol id="clock-scale-big">
+      <g id="position" class="clock-scale big" pointer-events="visible">
+        <section>
+          <rect />
+        </section>
+      </g>
+    </symbol>
+    <!-- 円盤の目盛り(1分単位) -->
+    <symbol id="clock-scale-small">
+      <g id="position" class="clock-scale small" pointer-events="visible">
+        <section>
+          <rect />
+        </section>
+      </g>
+    </symbol>
+  </defs>
+
+  <!-- 円盤の目盛り -->
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(0)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(6)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(12)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(18)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(24)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(30)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(36)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(42)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(48)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(54)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(60)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(66)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(72)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(78)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(84)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(90)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(96)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(102)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(108)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(114)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(120)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(126)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(132)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(138)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(144)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(150)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(156)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(162)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(168)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(174)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(180)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(186)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(192)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(198)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(204)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(210)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(216)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(222)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(228)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(234)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(240)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(246)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(252)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(258)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(264)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(270)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(276)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(282)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(288)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(294)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(300)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(306)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(312)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(318)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(324)" />
+  </use>
+  <use href="#clock-scale-big">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(330)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(336)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(342)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(348)" />
+  </use>
+  <use href="#clock-scale-small">
+    <set href="position" attributeName="transform" to="translate(50%,50%),rotate(354)" />
+  </use>
+
+  <!-- 針 -->
+  <!-- 分針 -->
+  <g id="minute-hand" pointer-events="visible" transform="translate(50%,50%)">
+    <rect />
+  </g>
+  <!-- 時針 -->
+  <g id="hour-hand" pointer-events="visible" transform="translate(50%,50%)">
+    <rect />
+  </g>
+  <!-- 秒針 -->
+  <g id="second-hand" pointer-events="visible" transform="translate(50%,50%)">
+    <rect />
+  </g>
+  <!-- 針の軸 -->
+  <circle class="hand-axis" />
+
+
+  <!-- 日付と曜日 -->
+  <text id="date" />
+  <text id="day" />
+
+  <!-- デジタル時刻表示 -->
+  <text id="time" />
+  
+
+  <!-- 秒インダイヤル -->
+  <section class="indial-seconds">
+    <!-- 外周円 -->
+    <arc class="indial-seconds-outer-circle" />
+    <!-- 秒インダイヤル本体 -->
+    <arc id="secs_indial" />
+    <!-- 秒文字列 -->
+    <text id="secs_text" />
+  </section>
+
+  <!-- バッテリー表示 -->
+  <section class="battery">
+    <arc />
+    <arc id="battery" />
+  </section>
+
 </svg>
