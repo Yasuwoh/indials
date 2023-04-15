@@ -201,7 +201,6 @@
     <set href="position" attributeName="transform" to="translate(50%,50%),rotate(354)" />
   </use>
 
-
   <!-- 秒インダイヤル -->
   <section class="indial-seconds">
     <!-- 外周円 -->
@@ -212,40 +211,76 @@
     <text id="secs_text" />
   </section>
 
-  <!-- 歩数歩数インダイヤル -->
-  <section class="indial-steps">
+    <!-- 心拍数インダイヤル -->
+    <section class="indial indial-heartrate">
     <!-- 外周円 -->
-    <arc class="indial-steps-outer-circle" />
-    <!-- 歩数進捗円弧 -->
-    <arc id="steps_progress" />
-    <!-- 歩数アイコン -->
-    <image class="icon" href="steps_36px.png" />
-    <!-- 歩数表示 -->
-    <text id="steps_text">00000</text>
+    <arc class="outer-circle" />
+    <!-- 心拍数進捗円弧 -->
+    <arc id="heartrate_progress" class="progress" />
+    <!-- 心拍数アイコン -->
+    <image class="icon" href="sdk-design-assets/heart_rate_36px.png" />
+    <!-- 心拍数表示 -->
+    <text id="heartrate_text" class="value">000</text>
   </section>
 
-  <!-- 心拍数インダイヤル -->
-  <section class="indial-heartrate">
+  <!-- 歩数インダイヤル -->
+  <section class="indial indial-steps">
     <!-- 外周円 -->
-    <arc class="indial-heartrate-outer-circle" />
-    <!-- 心拍数進捗円弧 -->
-    <arc id="heartrate_progress" />
-    <!-- 心拍数アイコン -->
-    <image class="icon" href="heart_rate_36px.png" />
-    <!-- 心拍数表示 -->
-    <text id="heartrate_text">000</text>
+    <arc class="outer-circle" />
+    <!-- 歩数進捗円弧 -->
+    <arc id="steps_progress" class="progress" />
+    <!-- 歩数アイコン -->
+    <image class="icon" href="sdk-design-assets/steps_36px.png" />
+    <!-- 歩数表示 -->
+    <text id="steps_text" class="value">00000</text>
   </section>
 
   <!-- カロリーインダイヤル -->
-  <section class="indial-calories">
+  <section class="indial indial-calories">
     <!-- 外周円 -->
-    <arc class="indial-calories-outer-circle" />
+    <arc class="outer-circle" />
     <!-- カロリー進捗円弧 -->
-    <arc id="calories_progress" />
+    <arc id="calories_progress" class="progress" />
     <!-- カロリーアイコン -->
-    <image class="icon" href="calories_36px.png" />
+    <image class="icon" href="sdk-design-assets/calories_36px.png" />
     <!-- カロリー表示 -->
-    <text id="calories_text">0000</text>
+    <text id="calories_text" class="value">0000</text>
+  </section>
+
+  <!-- AZM(ActiveZoneMinutes)インダイヤル -->
+  <section class="indial indial-azm">
+    <!-- 外周円 -->
+    <arc class="outer-circle" />
+    <!-- AZM進捗円弧 -->
+    <arc id="azm_progress" class="progress" />
+    <!-- AZMアイコン -->
+    <image class="icon" href="sdk-design-assets/azm_36px.png" />
+    <!-- AZM表示 -->
+    <text id="azm_text" class="value">00000</text>
+  </section>
+
+  <!-- 距離インダイヤル -->
+  <section class="indial indial-distance">
+    <!-- 外周円 -->
+    <arc class="outer-circle" />
+    <!-- 距離進捗円弧 -->
+    <arc id="distance_progress" class="progress" />
+    <!-- 距離アイコン -->
+    <image class="icon" href="sdk-design-assets/distance_36px.png" />
+    <!-- 距離表示 -->
+    <text id="distance_text" class="value">000</text>
+  </section>
+
+  <!-- 昇降インダイヤル -->
+  <section class="indial indial-floors">
+    <!-- 外周円 -->
+    <arc class="outer-circle" />
+    <!-- 昇降進捗円弧 -->
+    <arc id="floors_progress" class="progress" />
+    <!-- 昇降アイコン -->
+    <image class="icon" href="sdk-design-assets/floors_36px.png" />
+    <!-- 昇降表示 -->
+    <text id="floors_text" class="value">0000</text>
   </section>
 
 
@@ -280,7 +315,7 @@
   <section class="battery">
     <arc />
     <arc id="battery" />
-    <image class="icon" href="stat_am_solid_32px.png" />
+    <image class="icon" href="sdk-design-assets/stat_am_solid_32px.png" />
   </section>
 
 </svg>

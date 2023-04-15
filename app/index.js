@@ -105,13 +105,15 @@ clock.addEventListener ("tick", renewClock_minutes);
 // 秒インダイヤルの更新
 const el_secs_text = document.getElementById("secs_text");
 const el_secs_indial = document.getElementById("secs_indial");
-function renewClock_seconds (evt) {
-    let today = evt.date;
-    let seconds = today.getSeconds();
-    el_secs_text.text = seconds;
-    el_secs_indial.sweepAngle = 360 * seconds / 60;
+    if (el_secs_text && el_secs_indial) {
+    function renewClock_seconds (evt) {
+        let today = evt.date;
+        let seconds = today.getSeconds();
+        el_secs_text.text = seconds;
+        el_secs_indial.sweepAngle = 360 * seconds / 60;
+    }
+    clock.addEventListener ("tick", renewClock_seconds);
 }
-clock.addEventListener ("tick", renewClock_seconds);
 
 
 // バッテリー残量の更新
@@ -133,6 +135,21 @@ function renewBattery (evt) {
 }
 clock.addEventListener ("tick", renewBattery);
 
+
+// 心拍数の更新
+const el_heartrate_text = document.getElementById("heartrate_text");
+if (HeartRateSensor && appbit.permissions.granted("access_heart_rate")) {
+  const hrm = new HeartRateSensor();
+  hrm.addEventListener("reading", () => {
+    el_heartrate_text.text = hrm.heartRate;
+  });
+  display.addEventListener("change", () => {
+    // Automatically stop the sensor when the screen is off to conserve battery
+    display.on ? hrm.start() : hrm.stop();
+  });
+  hrm.start();
+}
+
 // 歩数の更新
 const el_steps_text = document.getElementById("steps_text");
 const el_steps_progress = document.getElementById("steps_progress");
@@ -148,20 +165,6 @@ if (today && appbit.permissions.granted("access_activity")) {
         }
     }
     clock.addEventListener ("tick", renewSteps);
-}
-
-// 心拍数の更新
-const el_heartrate_text = document.getElementById("heartrate_text");
-if (HeartRateSensor && appbit.permissions.granted("access_heart_rate")) {
-  const hrm = new HeartRateSensor();
-  hrm.addEventListener("reading", () => {
-    el_heartrate_text.text = hrm.heartRate;
-  });
-  display.addEventListener("change", () => {
-    // Automatically stop the sensor when the screen is off to conserve battery
-    display.on ? hrm.start() : hrm.stop();
-  });
-  hrm.start();
 }
 
 // カロリーの更新
