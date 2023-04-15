@@ -204,7 +204,9 @@
   <!-- 針 -->
   <!-- 分針 -->
   <g id="minute-hand" pointer-events="visible" transform="translate(50%,50%)">
-    <rect />
+    <rect x="-4" y="-40%" width="8" height="40%+20" fill="greenyellow" />
+    <line x1="-4" y1="-40%" x2="0" y2="-45%" fill="greenyellow" stroke-width="2" />
+    <line x1="3" y1="-40%" x2="0" y2="-45%" fill="greenyellow" stroke-width="2" />
   </g>
   <!-- 時針 -->
   <g id="hour-hand" pointer-events="visible" transform="translate(50%,50%)">
@@ -234,6 +236,18 @@
     <arc id="secs_indial" />
     <!-- 秒文字列 -->
     <text id="secs_text" />
+  </section>
+
+  <!-- 歩数印ダイアル -->
+  <section class="indial-steps">
+    <!-- 外周円 -->
+    <arc class="indial-steps-outer-circle" />
+    <!-- 歩数進捗円弧 -->
+    <arc id="steps_progress" />
+    <!-- 歩数アイコン -->
+    <image x="0" y="0" widht="36" height="36" href="steps_36px.png" />
+    <!-- 歩数表示 -->
+    <text id="steps_text" />
   </section>
 
   <!-- バッテリー表示 -->
