@@ -11,9 +11,9 @@ import { display } from "display";
 
 clock.granularity = "seconds";
 
-function zeroPad (i) {
+function padWith (i, pad) {
     if (i < 10) {
-        i = "0" + i;
+        i = pad + i;
     }
     return i;
 }
@@ -37,14 +37,14 @@ clock.addEventListener ("tick", renewClockHands);
 // 針か軸をタップしたら針の表示をトグルする
 const el_hand_axis = document.getElementById("hand_axis");
 function toggleHandsDisplay (evt) {
-    if (el_minute_hand.style.display == "inline") {
-        el_minute_hand.style.display = "none";
-        el_hour_hand.style.display = "none";
-        el_second_hand.style.display = "none";
-    } else {
+    if (el_minute_hand.style.display == "none") {
         el_minute_hand.style.display = "inline";
         el_hour_hand.style.display = "inline";
         el_second_hand.style.display = "inline";
+    } else {
+        el_minute_hand.style.display = "none";
+        el_hour_hand.style.display = "none";
+        el_second_hand.style.display = "none";
     }
 }
 el_minute_hand.addEventListener ("click", toggleHandsDisplay);
@@ -56,6 +56,7 @@ el_hand_axis.addEventListener ("click", toggleHandsDisplay);
 // 時刻デジタル表示の更新
 const el_date = document.getElementById('date');
 const el_day = document.getElementById('day');
+const el_dateday = document.getElementById('dateday');
 const el_time = document.getElementById('time');
 const month_names = {
     0: 'JAN',
@@ -80,7 +81,7 @@ const day_names = {
     5: 'FRI',
     6: 'SAT',
 }
-function renewClock_minutes (evt) {
+function renewClockDigits (evt) {
     let today = evt.date;
 
     let month = today.getMonth();
@@ -90,16 +91,22 @@ function renewClock_minutes (evt) {
     let day = today.getDay();
     el_day.text = day_names[day];
 
+    el_dateday.text = `${day_names[day]} ${date} ${month_names[month]}`
+
+    let time = "";
     let hours = today.getHours();
+    let mins_2d = padWith (today.getMinutes(), "0");
     if (preferences.clockDisplay === "12h") {
-        hours = hours % 12 || 12;
+        let ampm = hours < 12 ? 'AM' : 'PM';
+        let hours_2d = padWith ((hours-1) % 12 + 1, " ");
+        time = `${hours_2d}:${mins_2d} ${ampm}`;
     } else {
-        hours = zeroPad (hours);
+        hours_2d = padWith (hours, " ");
+        time = `${hours}:${mins_2d}`;
     }
-    let mins = zeroPad (today.getMinutes());
-    el_time.text = `${hours}:${mins}`;
+    el_time.text = time;
 }
-clock.addEventListener ("tick", renewClock_minutes);
+clock.addEventListener ("tick", renewClockDigits);
 
 
 // 秒インダイヤルの更新
@@ -182,4 +189,77 @@ if (today && appbit.permissions.granted("access_activity")) {
         }
     }
     clock.addEventListener ("tick", renewCalories);
+}
+
+// AZMの更新
+const el_azm_text = document.getElementById("azm_text");
+const el_azm_progress = document.getElementById("azm_progress");
+if (today && appbit.permissions.granted("access_activity")) {
+    function renewAzm (evt) {
+        let azm = today.adjusted.activeZoneMinutes.total || 0;
+        let goal = goals.activeZoneMinutes.total;
+        el_azm_text.text = azm;
+        if (azm > goal) {
+            el_azm_progress.sweepAngle = 360;
+        } else {
+            el_azm_progress.sweepAngle = 360 * azm / goal;
+        }
+    }
+    clock.addEventListener ("tick", renewAzm);
+}
+
+// 距離の更新
+const el_distance_text = document.getElementById("distance_text");
+const el_distance_progress = document.getElementById("distance_progress");
+if (today && appbit.permissions.granted("access_activity")) {
+    function renewDistance (evt) {
+        let distance = today.adjusted.distance || 0;
+        let goal = goals.distance;
+        el_distance_text.text = distance;
+        if (distance > goal) {
+            el_distance_progress.sweepAngle = 360;
+        } else {
+            el_distance_progress.sweepAngle = 360 * distance / goal;
+        }
+    }
+    clock.addEventListener ("tick", renewDistance);
+}
+
+// 昇降の更新
+const el_floors_text = document.getElementById("floors_text");
+const el_floors_progress = document.getElementById("floors_progress");
+if (today && appbit.permissions.granted("access_activity")) {
+    function renewFloors (evt) {
+        let floors = today.adjusted.elevationGain || 0;
+        let goal = goals.elevationGain;
+        el_floors_text.text = floors;
+        if (floors > goal) {
+            el_floors_progress.sweepAngle = 360;
+        } else {
+            el_floors_progress.sweepAngle = 360 * floors / goal;
+        }
+    }
+    clock.addEventListener ("tick", renewFloors);
+}
+
+
+
+import { OrientationSensor } from "orientation";
+
+if (OrientationSensor) {
+   console.log("This device has an OrientationSensor!");
+   const orientation = new OrientationSensor({ frequency: 1 });
+   orientation.addEventListener("reading", () => {
+     console.log(
+      `Orientation Reading: \
+        timestamp=${orientation.timestamp}, \
+        [${orientation.quaternion[0]}, \
+        ${orientation.quaternion[1]}, \
+        ${orientation.quaternion[2]}, \
+        ${orientation.quaternion[3]}]`
+     );
+   });
+   orientation.start();
+} else {
+   console.log("This device does NOT have an OrientationSensor!");
 }

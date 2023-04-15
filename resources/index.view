@@ -287,6 +287,7 @@
   <!-- 日付と曜日 -->
   <text id="date" />
   <text id="day" />
+  <text id="dateday" />
 
   <!-- デジタル時刻表示 -->
   <text id="time" />

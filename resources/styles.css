@@ -55,29 +55,39 @@ circle.hand-axis { /* 針の軸 */
 
 /* 日付と曜日 */
 #date { /* 日付の文字列 */
-  text-length: 16;
-  fill: white;
-  font-size: 40;
-  text-anchor: start;
+  display: none;
   x: 10%;
   y: 50%+20;
-}
-#day { /* 曜日の文字列 */
-  text-length: 16;
-  fill: white;
   font-size: 40;
   text-anchor: start;
+  fill: white;
+  text-length: 16;
+}
+#day { /* 曜日の文字列 */
+  display: none;
   x: 10%;
   y: 50%+60;
+  font-size: 40;
+  text-anchor: start;
+  fill: white;
+  text-length: 16;
+}
+#dateday { /* 日付と曜日の文字列まとめて */
+  x: 50%;
+  y: 17%;
+  font-size: 30;
+  text-anchor: middle;
+  fill: white;
+  text-length: 16;
 }
 /* デジタル時刻表示 */
 #time { /* 時刻の文字列 */
-  text-length: 8;
+  x: 50%;
+  y: 80%+30;
+  font-size: 30;
+  text-anchor: middle;
   fill: white;
-  font-size: 40;
-  text-anchor: end;
-  x: 90%;
-  y: 50%+20;
+  text-length: 8;
 }
 
 
@@ -212,10 +222,10 @@ section.battery arc {
   fill: gray;
 }
 section.battery image.icon { /* アイコン */
-  x: 95%;
-  y: 5%;
-  width: 16;
-  height: 16;
-  fill: yellow;
+  x: 89%;
+  y: 25%-12;
+  width: 24;
+  height: 24;
+  fill: gold;
 }
 
