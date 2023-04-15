@@ -107,6 +107,16 @@ function renewClockDigits (evt) {
     el_time.text = time;
 }
 clock.addEventListener ("tick", renewClockDigits);
+// 時刻部分をタップしたら表示をトグルする
+function ToggleTimeDisplay (evt) {
+    if (el_time.style.fill == "black") {
+        el_time.style.fill = "white";
+    } else {
+        el_time.style.display = "black";
+    }
+    console.log("test");
+}
+//el_time.addEventListener ("click", ToggleTimeDisplay);
 
 
 // 秒インダイヤルの更新

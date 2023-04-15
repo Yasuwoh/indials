@@ -290,7 +290,7 @@
   <text id="dateday" />
 
   <!-- デジタル時刻表示 -->
-  <text id="time" />
+  <text id="time" pointer-events="visible" />
 
   <!-- 針 -->
   <!-- 分針 -->
