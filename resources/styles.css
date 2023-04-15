@@ -20,45 +20,41 @@ g.clock-scale.small section rect {
 }
 
 /* 針 */
-#minute-hand rect {
+#minute-hand rect { /* 分針 */
   x: -4;
-  y: -50%;
+  y: -40%;
   width: 8;
-  height: 50%;
+  height: 44%;
   fill: greenyellow;
+  display: inline;
 }
-#hour-hand rect {
+#hour-hand rect { /* 時針 */
   x: -6;
-  y: -75;
+  y: -30%;
   width: 12;
-  height: 75;
+  height: 33%;
   fill: green;
+  display: inline;
 }
-#second-hand rect {
+#second-hand rect { /* 秒針 */
   x: -2;
-  y: -120;
+  y: -50%;
   width: 4;
-  height: 120;
+  height: 55%;
   fill: red;
+  display: inline;
 }
-circle.hand-axis {
+circle.hand-axis { /* 針の軸 */
   fill: gray;
   cx: 50%;
   cy: 50%;
   r: 10;
+  display: inline;
 }
 
 
 /* 日付と曜日 */
-#date {
-  text-length: 16;
-  fill: white;
-  font-size: 40;
-  text-anchor: start;
-  x: 10%;
-  y: 50%-20;
-}
-#day {
+#date { /* 日付の文字列 */
   text-length: 16;
   fill: white;
   font-size: 40;
@@ -66,29 +62,34 @@ circle.hand-axis {
   x: 10%;
   y: 50%+20;
 }
-
-
-
+#day { /* 曜日の文字列 */
+  text-length: 16;
+  fill: white;
+  font-size: 40;
+  text-anchor: start;
+  x: 10%;
+  y: 50%+60;
+}
 /* デジタル時刻表示 */
-#time {
+#time { /* 時刻の文字列 */
   text-length: 8;
   fill: white;
   font-size: 40;
   text-anchor: end;
   x: 90%;
-  y: 50%;
+  y: 50%+20;
 }
 
 
 
 /* 秒インダイヤル */
-section.indial-seconds {
+section.indial-seconds { /* 秒のコンテナ */
   x: 35%;
   y: 60%;
   width: 30%;
   height: 30%;
 }
-section.indial-seconds arc.indial-seconds-outer-circle {
+section.indial-seconds arc.indial-seconds-outer-circle { /* 外周円 */
   x: 0;
   y: 0;
   width: 100%;
@@ -98,7 +99,7 @@ section.indial-seconds arc.indial-seconds-outer-circle {
   sweep-angle: 360;
   fill: white;
 }
-section.indial-seconds #secs_indial {
+section.indial-seconds #secs_indial { /* 秒のインダイヤル */
   x: 3;
   y: 3;
   width: 100%-6;
@@ -108,7 +109,7 @@ section.indial-seconds #secs_indial {
   sweep-angle: 360;
   fill: gray;
 }
-#secs_text {
+#secs_text { /* 秒の文字列 */
   font-size: 40;
   text-length: 2;
   text-anchor: middle;
@@ -119,6 +120,134 @@ section.indial-seconds #secs_indial {
   height: 100%;
 }
 
+/* 歩数インダイヤル */
+section.indial-steps { /* 歩数のコンテナ */
+  x: 38%;
+  y: 20%;
+  width: 24%;
+  height: 24%;
+}
+section.indial-steps arc.indial-steps-outer-circle { /* 外周円 */
+  x: 0;
+  y: 0;
+  width: 100%;
+  height: 100%;
+  arc-width: 2;
+  start-angle: 0;
+  sweep-angle: 360;
+  fill: white;
+}
+section.indial-steps #steps_progress { /* 歩数進捗円弧 */
+  x: 2;
+  y: 2;
+  width: 100%-4;
+  height: 100%-4;
+  arc-width: 4;
+  start-angle: 0;
+  sweep-angle: 360;
+  fill: gray;
+}
+section.indial-steps image.icon { /* 歩数アイコン */
+  x: 50%-12;
+  y: 15%;
+  width: 24;
+  height: 24;
+  fill: white;
+}
+section.indial-steps #steps_text { /* 歩数表示 */
+  x: 50%;
+  y: 70%;
+  font-size: 24;
+  text-length: 6;
+  text-anchor: middle;
+  fill: white;
+}
+
+/* 心拍数インダイヤル */
+section.indial-heartrate { /* 心拍数のコンテナ */
+  x: 14%;
+  y: 20%;
+  width: 24%;
+  height: 24%;
+}
+section.indial-heartrate arc.indial-heartrate-outer-circle { /* 外周円 */
+  x: 0;
+  y: 0;
+  width: 100%;
+  height: 100%;
+  arc-width: 2;
+  start-angle: 0;
+  sweep-angle: 360;
+  fill: white;
+}
+section.indial-heartrate #heartrate_progress { /* 心拍数進捗円弧 */
+  x: 2;
+  y: 2;
+  width: 100%-4;
+  height: 100%-4;
+  arc-width: 4;
+  start-angle: 0;
+  sweep-angle: 360;
+  fill: gray;
+}
+section.indial-heartrate image.icon { /* 心拍数アイコン */
+  x: 50%-12;
+  y: 15%;
+  width: 24;
+  height: 24;
+  fill: white;
+}
+section.indial-heartrate #heartrate_text { /* 心拍数表示 */
+  x: 50%;
+  y: 70%;
+  font-size: 24;
+  text-length: 6;
+  text-anchor: middle;
+  fill: white;
+}
+
+/* カロリーインダイヤル */
+section.indial-calories { /* カロリーのコンテナ */
+  x: 62%;
+  y: 20%;
+  width: 24%;
+  height: 24%;
+}
+section.indial-calories arc.indial-calories-outer-circle { /* 外周円 */
+  x: 0;
+  y: 0;
+  width: 100%;
+  height: 100%;
+  arc-width: 2;
+  start-angle: 0;
+  sweep-angle: 360;
+  fill: white;
+}
+section.indial-calories #calories_progress { /* カロリー進捗円弧 */
+  x: 2;
+  y: 2;
+  width: 100%-4;
+  height: 100%-4;
+  arc-width: 4;
+  start-angle: 0;
+  sweep-angle: 360;
+  fill: gray;
+}
+section.indial-calories image.icon { /* カロリーアイコン */
+  x: 50%-12;
+  y: 15%;
+  width: 24;
+  height: 24;
+  fill: white;
+}
+section.indial-calories #calories_text { /* カロリー数表示 */
+  x: 50%;
+  y: 70%;
+  font-size: 24;
+  text-length: 6;
+  text-anchor: middle;
+  fill: white;
+}
 
 /* バッテリー表示 */
 section.battery {
@@ -134,3 +263,11 @@ section.battery arc {
   sweep-angle: 30;
   fill: gray;
 }
+section.battery image.icon { /* アイコン */
+  x: 95%;
+  y: 5%;
+  width: 16;
+  height: 16;
+  fill: yellow;
+}
+

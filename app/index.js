@@ -4,6 +4,10 @@ import clock from "clock";
 import * as document from "document";
 import {preferences } from "user-settings";
 import { battery } from "power";
+import { me as appbit } from "appbit";
+import { HeartRateSensor } from "heart-rate";
+import { today, goals } from "user-activity";
+import { display } from "display";
 
 clock.granularity = "seconds";
 
@@ -30,6 +34,23 @@ function renewClockHands (evt) {
     el_second_hand.groupTransform.rotate.angle = 360 * second / 60;
 }
 clock.addEventListener ("tick", renewClockHands);
+// 針か軸をタップしたら針の表示をトグルする
+const el_hand_axis = document.getElementById("hand_axis");
+function toggleHandsDisplay (evt) {
+    if (el_minute_hand.style.display == "inline") {
+        el_minute_hand.style.display = "none";
+        el_hour_hand.style.display = "none";
+        el_second_hand.style.display = "none";
+    } else {
+        el_minute_hand.style.display = "inline";
+        el_hour_hand.style.display = "inline";
+        el_second_hand.style.display = "inline";
+    }
+}
+el_minute_hand.addEventListener ("click", toggleHandsDisplay);
+el_hour_hand.addEventListener ("click", toggleHandsDisplay);
+el_second_hand.addEventListener ("click", toggleHandsDisplay);
+el_hand_axis.addEventListener ("click", toggleHandsDisplay);
 
 
 // 時刻デジタル表示の更新
@@ -83,12 +104,12 @@ clock.addEventListener ("tick", renewClock_minutes);
 
 // 秒インダイヤルの更新
 const el_secs_text = document.getElementById("secs_text");
-const arc_secs = document.getElementById("secs_indial");
+const el_secs_indial = document.getElementById("secs_indial");
 function renewClock_seconds (evt) {
     let today = evt.date;
     let seconds = today.getSeconds();
     el_secs_text.text = seconds;
-    arc_secs.sweepAngle = 360 * seconds / 60;
+    el_secs_indial.sweepAngle = 360 * seconds / 60;
 }
 clock.addEventListener ("tick", renewClock_seconds);
 
@@ -111,3 +132,51 @@ function renewBattery (evt) {
     el_battery.sweepAngle = battery_angle;
 }
 clock.addEventListener ("tick", renewBattery);
+
+// 歩数の更新
+const el_steps_text = document.getElementById("steps_text");
+const el_steps_progress = document.getElementById("steps_progress");
+if (today && appbit.permissions.granted("access_activity")) {
+    function renewSteps (evt) {
+        let steps = today.adjusted.steps || 0;
+        let goal = goals.steps;
+        el_steps_text.text = steps;
+        if (steps > goal) {
+            el_steps_progress.sweepAngle = 360;
+        } else {
+            el_steps_progress.sweepAngle = 360 * steps / goal;
+        }
+    }
+    clock.addEventListener ("tick", renewSteps);
+}
+
+// 心拍数の更新
+const el_heartrate_text = document.getElementById("heartrate_text");
+if (HeartRateSensor && appbit.permissions.granted("access_heart_rate")) {
+  const hrm = new HeartRateSensor();
+  hrm.addEventListener("reading", () => {
+    el_heartrate_text.text = hrm.heartRate;
+  });
+  display.addEventListener("change", () => {
+    // Automatically stop the sensor when the screen is off to conserve battery
+    display.on ? hrm.start() : hrm.stop();
+  });
+  hrm.start();
+}
+
+// カロリーの更新
+const el_calories_text = document.getElementById("calories_text");
+const el_calories_progress = document.getElementById("calories_progress");
+if (today && appbit.permissions.granted("access_activity")) {
+    function renewCalories (evt) {
+        let calories = today.adjusted.calories || 0;
+        let goal = goals.calories;
+        el_calories_text.text = calories;
+        if (calories > goal) {
+            el_calories_progress.sweepAngle = 360;
+        } else {
+            el_calories_progress.sweepAngle = 360 * calories / goal;
+        }
+    }
+    clock.addEventListener ("tick", renewCalories);
+}

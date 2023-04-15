@@ -3,7 +3,7 @@
   <defs>
     <!-- 円盤の目盛り(5分単位) -->
     <symbol id="clock-scale-big">
-      <g id="position" class="clock-scale big" pointer-events="visible">
+      <g id="position" class="clock-scale big">
         <section>
           <rect />
         </section>
@@ -11,7 +11,7 @@
     </symbol>
     <!-- 円盤の目盛り(1分単位) -->
     <symbol id="clock-scale-small">
-      <g id="position" class="clock-scale small" pointer-events="visible">
+      <g id="position" class="clock-scale small">
         <section>
           <rect />
         </section>
@@ -201,10 +201,65 @@
     <set href="position" attributeName="transform" to="translate(50%,50%),rotate(354)" />
   </use>
 
+
+  <!-- 秒インダイヤル -->
+  <section class="indial-seconds">
+    <!-- 外周円 -->
+    <arc class="indial-seconds-outer-circle" />
+    <!-- 秒インダイヤル本体 -->
+    <arc id="secs_indial" />
+    <!-- 秒文字列 -->
+    <text id="secs_text" />
+  </section>
+
+  <!-- 歩数歩数インダイヤル -->
+  <section class="indial-steps">
+    <!-- 外周円 -->
+    <arc class="indial-steps-outer-circle" />
+    <!-- 歩数進捗円弧 -->
+    <arc id="steps_progress" />
+    <!-- 歩数アイコン -->
+    <image class="icon" href="steps_36px.png" />
+    <!-- 歩数表示 -->
+    <text id="steps_text">00000</text>
+  </section>
+
+  <!-- 心拍数インダイヤル -->
+  <section class="indial-heartrate">
+    <!-- 外周円 -->
+    <arc class="indial-heartrate-outer-circle" />
+    <!-- 心拍数進捗円弧 -->
+    <arc id="heartrate_progress" />
+    <!-- 心拍数アイコン -->
+    <image class="icon" href="heart_rate_36px.png" />
+    <!-- 心拍数表示 -->
+    <text id="heartrate_text">000</text>
+  </section>
+
+  <!-- カロリーインダイヤル -->
+  <section class="indial-calories">
+    <!-- 外周円 -->
+    <arc class="indial-calories-outer-circle" />
+    <!-- カロリー進捗円弧 -->
+    <arc id="calories_progress" />
+    <!-- カロリーアイコン -->
+    <image class="icon" href="calories_36px.png" />
+    <!-- カロリー表示 -->
+    <text id="calories_text">0000</text>
+  </section>
+
+
+  <!-- 日付と曜日 -->
+  <text id="date" />
+  <text id="day" />
+
+  <!-- デジタル時刻表示 -->
+  <text id="time" />
+
   <!-- 針 -->
   <!-- 分針 -->
   <g id="minute-hand" pointer-events="visible" transform="translate(50%,50%)">
-    <rect x="-4" y="-40%" width="8" height="40%+20" fill="greenyellow" />
+    <rect />
     <line x1="-4" y1="-40%" x2="0" y2="-45%" fill="greenyellow" stroke-width="2" />
     <line x1="3" y1="-40%" x2="0" y2="-45%" fill="greenyellow" stroke-width="2" />
   </g>
@@ -217,43 +272,15 @@
     <rect />
   </g>
   <!-- 針の軸 -->
-  <circle class="hand-axis" />
+  <circle id="hand_axis" class="hand-axis" pointer-events="visible" />
 
 
-  <!-- 日付と曜日 -->
-  <text id="date" />
-  <text id="day" />
-
-  <!-- デジタル時刻表示 -->
-  <text id="time" />
-  
-
-  <!-- 秒インダイヤル -->
-  <section class="indial-seconds">
-    <!-- 外周円 -->
-    <arc class="indial-seconds-outer-circle" />
-    <!-- 秒インダイヤル本体 -->
-    <arc id="secs_indial" />
-    <!-- 秒文字列 -->
-    <text id="secs_text" />
-  </section>
-
-  <!-- 歩数印ダイアル -->
-  <section class="indial-steps">
-    <!-- 外周円 -->
-    <arc class="indial-steps-outer-circle" />
-    <!-- 歩数進捗円弧 -->
-    <arc id="steps_progress" />
-    <!-- 歩数アイコン -->
-    <image x="0" y="0" widht="36" height="36" href="steps_36px.png" />
-    <!-- 歩数表示 -->
-    <text id="steps_text" />
-  </section>
 
   <!-- バッテリー表示 -->
   <section class="battery">
     <arc />
     <arc id="battery" />
+    <image class="icon" href="stat_am_solid_32px.png" />
   </section>
 
 </svg>
