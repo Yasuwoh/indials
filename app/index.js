@@ -251,25 +251,3 @@ if (today && appbit.permissions.granted("access_activity")) {
     }
     clock.addEventListener ("tick", renewFloors);
 }
-
-
-
-import { OrientationSensor } from "orientation";
-
-if (OrientationSensor) {
-   console.log("This device has an OrientationSensor!");
-   const orientation = new OrientationSensor({ frequency: 1 });
-   orientation.addEventListener("reading", () => {
-     console.log(
-      `Orientation Reading: \
-        timestamp=${orientation.timestamp}, \
-        [${orientation.quaternion[0]}, \
-        ${orientation.quaternion[1]}, \
-        ${orientation.quaternion[2]}, \
-        ${orientation.quaternion[3]}]`
-     );
-   });
-   orientation.start();
-} else {
-   console.log("This device does NOT have an OrientationSensor!");
-}
