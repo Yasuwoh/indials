@@ -256,6 +256,7 @@ if (today && appbit.permissions.granted("access_activity")) {
 
 import { OrientationSensor } from "orientation";
 
+const el_orientation_text = document.getElementById('orientation_text');
 if (OrientationSensor) {
    console.log("This device has an OrientationSensor!");
    const orientation = new OrientationSensor({ frequency: 1 });
@@ -268,6 +269,11 @@ if (OrientationSensor) {
         ${orientation.quaternion[2]}, \
         ${orientation.quaternion[3]}]`
      );
+     el_orientation_text.text = `${orientation.timestamp}, \
+     [${orientation.quaternion[0]}, \n \
+     ${orientation.quaternion[1]}, \
+     ${orientation.quaternion[2]}, \
+     ${orientation.quaternion[3]}]`;;
    });
    orientation.start();
 } else {
