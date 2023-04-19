@@ -221,6 +221,8 @@
     <image class="icon" href="sdk-design-assets/heart_rate_36px.png" />
     <!-- 心拍数表示 -->
     <text id="heartrate_text" class="value">000</text>
+    <!-- 単位 -->
+    <text class="unit">bpm</text>
   </section>
 
   <!-- 歩数インダイヤル -->
@@ -233,6 +235,8 @@
     <image class="icon" href="sdk-design-assets/steps_36px.png" />
     <!-- 歩数表示 -->
     <text id="steps_text" class="value">00000</text>
+    <!-- 単位 -->
+    <text class="unit">steps</text>
   </section>
 
   <!-- カロリーインダイヤル -->
@@ -245,6 +249,8 @@
     <image class="icon" href="sdk-design-assets/calories_36px.png" />
     <!-- カロリー表示 -->
     <text id="calories_text" class="value">0000</text>
+    <!-- 単位 -->
+    <text class="unit">kcal</text>
   </section>
 
   <!-- AZM(ActiveZoneMinutes)インダイヤル -->
@@ -257,6 +263,8 @@
     <image class="icon" href="sdk-design-assets/azm_36px.png" />
     <!-- AZM表示 -->
     <text id="azm_text" class="value">00000</text>
+    <!-- 単位 -->
+    <text class="unit">mins</text>
   </section>
 
   <!-- 距離インダイヤル -->
@@ -269,6 +277,8 @@
     <image class="icon" href="sdk-design-assets/distance_36px.png" />
     <!-- 距離表示 -->
     <text id="distance_text" class="value">000</text>
+    <!-- 単位 -->
+    <text id="distance_unit" class="unit">m</text>
   </section>
 
   <!-- 昇降インダイヤル -->
@@ -281,6 +291,8 @@
     <image class="icon" href="sdk-design-assets/floors_36px.png" />
     <!-- 昇降表示 -->
     <text id="floors_text" class="value">0000</text>
+    <!-- 単位 -->
+    <text class="unit">floors</text>
   </section>
 
 
@@ -293,19 +305,17 @@
   <text id="time" pointer-events="visible" />
 
   <!-- 針 -->
-  <!-- 分針 -->
-  <g id="minute-hand" pointer-events="visible" transform="translate(50%,50%)">
-    <rect />
-    <line x1="-4" y1="-40%" x2="0" y2="-45%" fill="greenyellow" stroke-width="2" />
-    <line x1="3" y1="-40%" x2="0" y2="-45%" fill="greenyellow" stroke-width="2" />
-  </g>
   <!-- 時針 -->
   <g id="hour-hand" pointer-events="visible" transform="translate(50%,50%)">
-    <rect />
+    <image href="hour-hand.png" />
+  </g>
+  <!-- 分針 -->
+  <g id="minute-hand" pointer-events="visible" transform="translate(50%,50%)">
+    <image href="minute-hand.png" />
   </g>
   <!-- 秒針 -->
   <g id="second-hand" pointer-events="visible" transform="translate(50%,50%)">
-    <rect />
+    <image href="second-hand.png" />
   </g>
   <!-- 針の軸 -->
   <circle id="hand_axis" class="hand-axis" pointer-events="visible" />

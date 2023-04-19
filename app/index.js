@@ -54,8 +54,6 @@ el_hand_axis.addEventListener ("click", toggleHandsDisplay);
 
 
 // 時刻デジタル表示の更新
-const el_date = document.getElementById('date');
-const el_day = document.getElementById('day');
 const el_dateday = document.getElementById('dateday');
 const el_time = document.getElementById('time');
 const month_names = {
@@ -86,10 +84,7 @@ function renewClockDigits (evt) {
 
     let month = today.getMonth();
     let date = today.getDate()
-    el_date.text = `${month_names[month]} ${date}`;
-    
     let day = today.getDay();
-    el_day.text = day_names[day];
 
     el_dateday.text = `${day_names[day]} ${date} ${month_names[month]}`
 
@@ -155,10 +150,21 @@ clock.addEventListener ("tick", renewBattery);
 
 // 心拍数の更新
 const el_heartrate_text = document.getElementById("heartrate_text");
+const el_heartrate_progress = document.getElementById("heartrate_progress");
 if (HeartRateSensor && appbit.permissions.granted("access_heart_rate")) {
   const hrm = new HeartRateSensor();
   hrm.addEventListener("reading", () => {
-    el_heartrate_text.text = hrm.heartRate;
+    let hr = hrm.heartRate;
+    el_heartrate_text.text = hr;
+    let hr_min = 20;
+    let hr_max = 220;
+    if (hr < hr_min) {
+        el_heartrate_progress.sweepAngle = 0;
+    } else if (hr_max < hr) {
+        el_heartrate_progress.sweepAngle = 360;
+    } else {
+        el_heartrate_progress.sweepAngle = 360 * (hr - hr_min) / (hr_max - hr_min);
+    }
   });
   display.addEventListener("change", () => {
     // Automatically stop the sensor when the screen is off to conserve battery
@@ -174,7 +180,13 @@ if (today && appbit.permissions.granted("access_activity")) {
     function renewSteps (evt) {
         let steps = today.adjusted.steps || 0;
         let goal = goals.steps;
-        el_steps_text.text = steps;
+
+        if (steps > 100000) {
+            el_steps_text.text = `${Math.floor(steps/100)/10}k`;
+        } else {
+            el_steps_text.text = steps;
+        }
+
         if (steps > goal) {
             el_steps_progress.sweepAngle = 360;
         } else {
@@ -221,11 +233,20 @@ if (today && appbit.permissions.granted("access_activity")) {
 // 距離の更新
 const el_distance_text = document.getElementById("distance_text");
 const el_distance_progress = document.getElementById("distance_progress");
+const el_distance_unit = document.getElementById("distance_unit");
 if (today && appbit.permissions.granted("access_activity")) {
     function renewDistance (evt) {
         let distance = today.adjusted.distance || 0;
         let goal = goals.distance;
-        el_distance_text.text = distance;
+
+        if (distance > 10000) {
+            el_distance_text.text = Math.floor(distance / 100) / 10;
+            el_distance_unit.text = "km";
+        } else {
+            el_distance_text.text = distance;
+            el_distance_unit.text = "m";
+        }
+
         if (distance > goal) {
             el_distance_progress.sweepAngle = 360;
         } else {

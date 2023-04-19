@@ -1,13 +1,52 @@
-registerSettingsPage(({ settings }) => (
-  <Page>
-    <Section
-      title={
-        <Text bold align="center">
-          App Settings
-        </Text>
-      }
-    >
-      <Text>Hello world!</Text>
-    </Section>
-  </Page>
-));
+function colorSelector (label, key) {
+  const colors = [
+    'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige', 'bisque', 'black', 'blanchedalmond', 'blue',
+    'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson',
+    'cyan', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgreen', 'darkgrey', 'darkkhaki', 'darkmagenta', 'darkolivegreen',
+    'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray', 'darkslategrey', 'darkturquoise', 'darkviolet',
+    'deeppink', 'deepskyblue', 'dimgray', 'dimgrey', 'dodgerblue', 'firebrick', 'floralwhite', 'forestgreen', 'fuchsia', 'gainsboro',
+    'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'greenyellow', 'grey', 'honeydew', 'hotpink', 'indianred',
+    'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan',
+    'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightgrey', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightslategrey',
+    'lightsteelblue', 'lightyellow', 'lime', 'limegreen', 'linen', 'magenta', 'maroon', 'mediumaquamarine', 'mediumblue', 'mediumorchid',
+    'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin',
+    'navajowhite', 'navy', 'oldlace', 'olive', 'olivedrab', 'orange', 'orangered', 'orchid', 'palegoldenrod', 'palegreen',
+    'paleturquoise', 'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'purple', 'red',
+    'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna', 'silver', 'skyblue',
+    'slateblue', 'slategray', 'slategrey', 'snow', 'springgreen', 'steelblue', 'tan', 'teal', 'thistle', 'tomato',
+    'turquoise', 'violet', 'wheat', 'white', 'whitesmoke', 'yellow', 'yellowgreen'
+  ];
+
+  return (
+    <Select
+    label={label}
+    selectViewTitle={`Select ${label}`}
+    settingsKey={key}
+    options={colors.map(c => ({name:c, value: c}))}
+    renderItem={c => <ColorSelect colors={[ {color:c.value} ]} /> }
+    onSelection={(selection) => console.log(selection)}
+    />
+  )
+}
+
+function mySettings (settings) {
+  return (
+    <Page>
+      <Section title="Watch">
+        {colorSelector("Background Color", "colorBackground")}
+        {colorSelector("Hour-Hand Color", "colorHourHand")}
+        {colorSelector("Minute-Hand Color", "colorMinuteHand")}
+        {colorSelector("Second-Hand Color", "colorSecondHand")}
+      </Section>
+      <Section title="Indial">
+        {colorSelector("Outer Circle Color", "colorOuterCircle")}
+        {colorSelector("Inner Arc Color (Unachieved)", "colorInnerArcUnachieved")}
+        {colorSelector("Inner Arc Color (Achieved)", "colorInnerArcAchieved")}
+        {colorSelector("Icon Color", "colorIcon")}
+        {colorSelector("Value Color", "colorValue")}
+      </Section>
+    </Page>
+  );
+}
+
+registerSettingsPage(mySettings);
