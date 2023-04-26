@@ -34,8 +34,8 @@ function renewClockHands (evt) {
     el_second_hand.groupTransform.rotate.angle = 360 * second / 60;
 }
 clock.addEventListener ("tick", renewClockHands);
-// 針か軸をタップしたら針の表示をトグルする
-const el_hand_axis = document.getElementById("hand_axis");
+// 軸周辺をタップしたら針の表示をトグルする
+const el_hand_axis_click_zone = document.getElementById("hand_axis_click_zone");
 function toggleHandsDisplay (evt) {
     if (el_minute_hand.style.display == "none") {
         el_minute_hand.style.display = "inline";
@@ -47,10 +47,7 @@ function toggleHandsDisplay (evt) {
         el_second_hand.style.display = "none";
     }
 }
-el_minute_hand.addEventListener ("click", toggleHandsDisplay);
-el_hour_hand.addEventListener ("click", toggleHandsDisplay);
-el_second_hand.addEventListener ("click", toggleHandsDisplay);
-el_hand_axis.addEventListener ("click", toggleHandsDisplay);
+el_hand_axis_click_zone.addEventListener ("click", toggleHandsDisplay);
 
 
 // 時刻デジタル表示の更新
@@ -102,30 +99,18 @@ function renewClockDigits (evt) {
     el_time.text = time;
 }
 clock.addEventListener ("tick", renewClockDigits);
-// 時刻部分をタップしたら表示をトグルする
-function ToggleTimeDisplay (evt) {
-    if (el_time.style.fill == "black") {
-        el_time.style.fill = "white";
-    } else {
-        el_time.style.display = "black";
-    }
-    console.log("test");
-}
-//el_time.addEventListener ("click", ToggleTimeDisplay);
 
 
 // 秒インダイヤルの更新
 const el_secs_text = document.getElementById("secs_text");
 const el_secs_indial = document.getElementById("secs_indial");
-    if (el_secs_text && el_secs_indial) {
-    function renewClock_seconds (evt) {
-        let today = evt.date;
-        let seconds = today.getSeconds();
-        el_secs_text.text = seconds;
-        el_secs_indial.sweepAngle = 360 * seconds / 60;
-    }
-    clock.addEventListener ("tick", renewClock_seconds);
+function renewClock_seconds (evt) {
+    let today = evt.date;
+    let seconds = today.getSeconds();
+    el_secs_text.text = seconds;
+    el_secs_indial.sweepAngle = 360 * seconds / 60;
 }
+clock.addEventListener ("tick", renewClock_seconds);
 
 
 // バッテリー残量の更新
@@ -152,25 +137,25 @@ clock.addEventListener ("tick", renewBattery);
 const el_heartrate_text = document.getElementById("heartrate_text");
 const el_heartrate_progress = document.getElementById("heartrate_progress");
 if (HeartRateSensor && appbit.permissions.granted("access_heart_rate")) {
-  const hrm = new HeartRateSensor();
-  hrm.addEventListener("reading", () => {
-    let hr = hrm.heartRate;
-    el_heartrate_text.text = hr;
-    let hr_min = 20;
-    let hr_max = 220;
-    if (hr < hr_min) {
-        el_heartrate_progress.sweepAngle = 0;
-    } else if (hr_max < hr) {
-        el_heartrate_progress.sweepAngle = 360;
-    } else {
-        el_heartrate_progress.sweepAngle = 360 * (hr - hr_min) / (hr_max - hr_min);
-    }
-  });
-  display.addEventListener("change", () => {
-    // Automatically stop the sensor when the screen is off to conserve battery
-    display.on ? hrm.start() : hrm.stop();
-  });
-  hrm.start();
+    const hrm = new HeartRateSensor();
+    hrm.addEventListener("reading", () => {
+        let hr = hrm.heartRate;
+        el_heartrate_text.text = hr;
+        let hr_min = 20;
+        let hr_max = 220;
+        if (hr < hr_min) {
+            el_heartrate_progress.sweepAngle = 0;
+        } else if (hr_max < hr) {
+            el_heartrate_progress.sweepAngle = 360;
+        } else {
+            el_heartrate_progress.sweepAngle = 360 * (hr - hr_min) / (hr_max - hr_min);
+        }
+    });
+    display.addEventListener("change", () => {
+        // Automatically stop the sensor when the screen is off to conserve battery
+        display.on ? hrm.start() : hrm.stop();
+    });
+    hrm.start();
 }
 
 // 歩数の更新
@@ -271,4 +256,23 @@ if (today && appbit.permissions.granted("access_activity")) {
         }
     }
     clock.addEventListener ("tick", renewFloors);
+}
+
+
+// 設定の読み込みと反映
+function initialSettings() {
+    const dictSettingsToClass = {
+        'colorBackground': '',
+        'colorHourHand': '',
+        'colorMinuteHand': '',
+        'colorSecondHand': '',
+        'colorClockScaleSmall': '',
+        'colorClockScaleLarge': '',
+        'colorOuterCircle': '',
+        'colorInnerArcUnachieved': '',
+        'colorInnerArcAchieved': '',
+        'colorIcon': '',
+        'colorValue': '',
+    };
+    let myKeyValue = settingsStorage.getItem("myKey");
 }

@@ -319,6 +319,8 @@
   </g>
   <!-- 針の軸 -->
   <circle id="hand_axis" class="hand-axis" pointer-events="visible" />
+  <!-- タップゾーン -->
+  <circle id="hand_axis_click_zone" class="hand-axis-click-zone" pointer-events="visible" />
 
 
 
@@ -327,6 +329,12 @@
     <arc />
     <arc id="battery" />
     <image class="icon" href="sdk-design-assets/stat_am_solid_32px.png" />
+  </section>
+
+  <!-- 天気表示-->
+  <section class="weather">
+    <image class="weather-icon" href="weather-icons/wi-na.png" />
+    <text class="temperature">88°</text>
   </section>
 
 </svg>

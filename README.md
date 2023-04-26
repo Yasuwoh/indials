@@ -6,5 +6,8 @@
 - 時計の針または軸をタップすると針の表示をトグルします。(針で表示が見えないときに使う想定)
 
 # 謝辞
-アイコンは sdk-design-assets を使っています。
+心拍数、歩数、カロリー、AZM、距離および昇降アイコンは sdk-design-assets を使っています。
 https://github.com/Fitbit/sdk-design-assets
+
+天気アイコンは Weather Icons を使っています。
+https://erikflowers.github.io/weather-icons/

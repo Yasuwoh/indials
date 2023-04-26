@@ -47,6 +47,12 @@ circle.hand-axis { /* 針の軸 */
   cy: 50%;
   r: 3%;
 }
+circle.hand-axis-click-zone {
+  opacity: 0;
+  cx: 50%;
+  cy: 50%;
+  r: 25%;
+}
 
 
 /* 日付と曜日 */
@@ -217,3 +223,19 @@ section.battery image.icon { /* アイコン */
   fill: gold;
 }
 
+/* 天気 */
+section.weather image.weather-icon {
+  x: 4%;
+  y: 80%;
+  width: 32;
+  height: 32;
+  fill: white;
+}
+section.weather text.temperature {
+  x: 10%;
+  y: 94%;
+  font-size: 20;
+  text-anchor: start;
+  fill: white;
+  text-length: 8;
+}

@@ -37,6 +37,8 @@ function mySettings (settings) {
         {colorSelector("Hour-Hand Color", "colorHourHand")}
         {colorSelector("Minute-Hand Color", "colorMinuteHand")}
         {colorSelector("Second-Hand Color", "colorSecondHand")}
+        {colorSelector("Clock Scale Color (small)", "colorClockScaleSmall")}
+        {colorSelector("Clock Scale Color (Large)", "colorClockScaleLarge")}
       </Section>
       <Section title="Indial">
         {colorSelector("Outer Circle Color", "colorOuterCircle")}
